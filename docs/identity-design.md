@@ -26,10 +26,8 @@ Future architecture may include:
 
 On-Premises Active Directory
         |
-        v
 Microsoft Entra Cloud Sync
         |
-        v
 Microsoft Entra ID
 
 ## 3. User Account Structure
