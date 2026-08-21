@@ -24,11 +24,11 @@ All employee identities are created and managed within Microsoft Entra ID.
 
 Future architecture may include:
 
-On-Premises Active Directory
-        |
-Microsoft Entra Cloud Sync
-        |
-Microsoft Entra ID
+- On-Premises Active Directory
+        
+- Microsoft Entra Cloud Sync
+        
+- Microsoft Entra ID
 
 ## 3. User Account Structure
 
@@ -51,34 +51,24 @@ Shared user accounts should not be used for normal employee access.
 
 Security groups use the following naming convention:
 
-SG-[Department or Resource]-[Purpose]
+- SG-[Department or Resource]-[Purpose]
 
 Examples:
 
-SG-IT-Users
-SG-HR-Users
-SG-IT-HelpDesk
-SG-Azure-Readers
-SG-Azure-Contributors
+- SG-IT-Users
+- SG-IT-HelpDesk
+- SG-Azure-Readers
+- SG-Azure-Contributors
 
 The SG prefix identifies the object as a security group.
 
 ## 5. Access Control Model
 
-Northstar Technologies primarily assigns access through security groups.
+Small Studios primarily assigns access through security groups.
 
 The preferred access model is:
 
-User
-  |
-  v
-Security Group
-  |
-  v
-Role or Permission
-  |
-  v
-Resource
+- User -> Security Group -> Role or Permission -> Resource
 
 Direct permission assignments to individual users should be minimized.
 
