@@ -14,7 +14,7 @@ The IAM environment is designed around the principles of:
 - Identity lifecycle management
 - Auditable access changes
 
-The initial environment is cloud-first. Hybrid identity with Windows Server Active Directory may be added in a future phase.
+The initial environment is **cloud-first.** Hybrid identity with Windows Server Active Directory may be added in a future phase.
 
 ## 2. Identity Source
 
@@ -25,10 +25,8 @@ All employee identities are created and managed within Microsoft Entra ID.
 Future architecture may include:
 
 - On-Premises Active Directory
-        
 - Microsoft Entra Cloud Sync
-        
-- Microsoft Entra ID
+
 
 ## 3. User Account Structure
 
@@ -45,7 +43,7 @@ User accounts contain identity attributes including:
 - Manager
 - User principal name
 
-Shared user accounts should not be used for normal employee access.
+***Shared user accounts should not be used for normal employee access.***
 
 ## 4. Group Naming Convention
 
@@ -60,7 +58,7 @@ Examples:
 - SG-Azure-Readers
 - SG-Azure-Contributors
 
-The SG prefix identifies the object as a security group.
+The SG prefix identifies the object as a **security group.**
 
 ## 5. Access Control Model
 
@@ -68,9 +66,9 @@ Small Studios primarily assigns access through security groups.
 
 The preferred access model is:
 
-- User -> Security Group -> Role or Permission -> Resource
+- **User > Security Group > Role or Permission > Resource**
 
-Direct permission assignments to individual users should be minimized.
+Direct permission assignments to individual users should be ***minimized.***
 
 This improves:
 
@@ -82,46 +80,30 @@ This improves:
 
 ## 6. Department-Based Access
 
-Employees receive membership in the security group associated with their department.
+Employees receive membership in the security group associated with their ***department.***
 
 Examples:
 
-Human Resources
--> SG-HR-Users
+- **Human Resources** > *SG-HR-Users*
+- **Finance** > *SG-Finance-Users*
+- **Information Technology** > *SG-IT-Users*
+- **Sales** > *SG-Sales-Users*
+- **Operations** > *SG-Operations-Users*
 
-Finance
--> SG-Finance-Users
-
-Information Technology
--> SG-IT-Users
-
-Sales
--> SG-Sales-Users
-
-Operations
--> SG-Operations-Users
-
-Department membership provides baseline access associated with the employee's business unit.
+Department membership provides ***baseline access*** associated with the employee's business unit.
 
 ## 7. Job-Based Access
 
-Additional access may be granted based on job responsibilities.
+Additional access may be granted based on ***job responsibilities.***
 
 Examples:
 
-Help Desk Analyst
--> SG-IT-HelpDesk
+- **Help Desk Analyst** > *SG-IT-HelpDesk*
+- **Cloud Engineer** > *SG-IT-CloudEngineers*
+- **Security Analyst** > *SG-IT-Security*
+- **IT Administrator** > *SG-IT-Admins*
 
-Cloud Engineer
--> SG-IT-CloudEngineers
-
-Security Analyst
--> SG-IT-Security
-
-IT Administrator
--> SG-IT-Admins
-
-Department membership alone does not automatically provide administrative privileges.
+Department membership alone ***does not automatically provide administrative privileges.***
 
 ## 8. Azure Resource Access
 
@@ -129,21 +111,16 @@ Azure permissions are separated from department and job-role groups.
 
 Examples:
 
-SG-Azure-Readers
--> Azure Reader permissions
+- **SG-Azure-Readers** > *Azure Reader permissions*
+- **SG-Azure-Contributors** > *Azure Contributor permissions*
 
-SG-Azure-Contributors
--> Azure Contributor permissions
-
-This allows Azure access to be assigned according to job requirements without directly assigning permissions to individual users.
+This allows Azure access to be assigned according to job requirements ***without directly assigning permissions to individual users.***
 
 ## 9. Least Privilege
 
-Users receive only the access necessary to perform their assigned job responsibilities.
-
-Access should not be granted solely because another employee in the same department has that permission.
-
-Elevated access must have a documented business requirement.
+- Users receive only the ***access necessary*** to perform their assigned job responsibilities.
+- Access should not be granted solely because another employee in the same department has that permission.
+- Elevated access must have a ***documented business requirement.***
 
 ## 10. Privileged Access
 
@@ -157,27 +134,23 @@ Privileged access should:
 - Avoid unnecessary permanent assignments
 - Be monitored through audit logs
 
-Future phases may implement Microsoft Entra Privileged Identity Management for just-in-time administrative access.
+Future phases may implement Microsoft Entra Privileged Identity Management for ***just-in-time administrative access.***
 
 ## 11. Authentication
 
-Multi-factor authentication will be used to reduce the risk of account compromise.
-
-The project will initially use the authentication controls available within the lab's Microsoft Entra licensing.
-
-More advanced Conditional Access policies may be implemented in a future phase.
+- Multi-factor authentication will be used to reduce the risk of account compromise.
+- The project will initially use the authentication controls available within the lab's Microsoft Entra licensing.
+- More advanced ***Conditional Access policies*** may be implemented in a future phase.
 
 ## 12. Identity Lifecycle
 
-Northstar Technologies follows a Joiner-Mover-Leaver model.
+Small Studios follows a **'Joiner-Mover-Leaver model.'**
 
-Joiner:
+- **Joiner:**
 A new identity is created and receives access based on department and job responsibilities.
-
-Mover:
+- **Mover:**
 Existing access is reviewed, unnecessary permissions are removed, and new permissions are assigned.
-
-Leaver:
+- **Leaver:**
 Access is disabled and removed when an employee leaves the organization.
 
 ## 13. Logging and Auditing
