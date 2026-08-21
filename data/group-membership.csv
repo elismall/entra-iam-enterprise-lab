@@ -1,0 +1,24 @@
+EmployeeID,UserName,GroupName
+1001,Jordan Davis,SG-IT-Users
+1001,Jordan Davis,SG-IT-Admins
+1001,Jordan Davis,SG-Azure-Contributors
+1002,Chris Walker,SG-IT-Users
+1002,Chris Walker,SG-IT-CloudEngineers
+1002,Chris Walker,SG-Azure-Contributors
+1003,Ashley Smith,SG-IT-Users
+1003,Ashley Smith,SG-IT-HelpDesk
+1003,Ashley Smith,SG-Azure-Readers
+1004,Kevin Harris,SG-IT-Users
+1004,Kevin Harris,SG-IT-Security
+1004,Kevin Harris,SG-Azure-Readers
+2001,Alicia Carter,SG-HR-Users
+2002,Marcus Reed,SG-HR-Users
+3001,David Thompson,SG-Finance-Users
+3002,Jessica Brown,SG-Finance-Users
+3003,Taylor Wilson,SG-Finance-Users
+4001,Michael Johnson,SG-Sales-Users
+4002,Lauren Moore,SG-Sales-Users
+4003,Brandon Lee,SG-Sales-Users
+5001,Nicole Adams,SG-Operations-Users
+5002,Cameron Green,SG-Operations-Users
+5003,Rachel Scott,SG-Operations-Users
