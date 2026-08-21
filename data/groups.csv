@@ -1,1 +1,12 @@
-
+GroupName,GroupType,Category,Purpose
+SG-IT-Users,Security,Department,Base access for Information Technology employees
+SG-HR-Users,Security,Department,Base access for Human Resources employees
+SG-Finance-Users,Security,Department,Base access for Finance employees
+SG-Sales-Users,Security,Department,Base access for Sales employees
+SG-Operations-Users,Security,Department,Base access for Operations employees
+SG-IT-HelpDesk,Security,JobRole,Help Desk support permissions
+SG-IT-CloudEngineers,Security,JobRole,Cloud engineering permissions
+SG-IT-Security,Security,JobRole,Security monitoring and investigation permissions
+SG-IT-Admins,Security,Privileged,Administrative identity management permissions
+SG-Azure-Readers,Security,AzureRBAC,Read-only access to approved Azure resources
+SG-Azure-Contributors,Security,AzureRBAC,Create and modify approved Azure resources
