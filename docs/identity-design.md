@@ -1,4 +1,4 @@
-# Northstar Technologies Identity Design
+# Small Studios Identity Design
 
 ## 1. Overview
 
