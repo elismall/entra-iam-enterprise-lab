@@ -1,1 +1,15 @@
-
+Role,DepartmentAccess,UserManagement,GroupManagement,AzureAccess,SecurityLogs,PrivilegedAccess
+HR Manager,Human Resources,None,None,None,None,No
+HR Specialist,Human Resources,None,None,None,None,No
+Finance Manager,Finance,None,None,None,None,No
+Accountant,Finance,None,None,None,None,No
+Financial Analyst,Finance,None,None,None,None,No
+Sales Manager,Sales,None,None,None,None,No
+Sales Representative,Sales,None,None,None,None,No
+Operations Manager,Operations,None,None,None,None,No
+Operations Analyst,Operations,None,None,None,None,No
+Coordinator,Operations,None,None,None,None,No
+Help Desk Analyst,Information Technology,Limited,None,Reader,None,No
+Cloud Engineer,Information Technology,None,None,Contributor,Limited,No
+Security Analyst,Information Technology,None,None,Reader,Read,No
+IT Manager,Information Technology,Full,Full,Contributor,Read,Yes
