@@ -16,11 +16,11 @@ The process ensures that users:
 # Joiner Process
 ## Purpose
 
-The Joiner process provisions a new employee identity and assigns access based on the employee's department and job responsibilities.
+- The Joiner process provisions a new employee identity and assigns access based on the employee's department and job responsibilities.
 
 ## Trigger
 
-An approved new-hire request is received from Human Resources.
+- An approved new-hire request is received from Human Resources.
 
 ## Example Scenario
 
@@ -58,11 +58,11 @@ Taylor Wilson receives only the access required to perform the Financial Analyst
 
 ## Purpose
 
-The Mover process updates an employee's identity and permissions when their department, job title, or responsibilities change.
+- The Mover process updates an employee's identity and permissions when their department, job title, or responsibilities change.
 
 ## Trigger
 
-An approved employee transfer, promotion, or role-change request is received from Human Resources.
+- An approved employee transfer, promotion, or role-change request is received from Human Resources.
 
 ## Example Scenario
 
@@ -101,18 +101,18 @@ Failing to remove previous access can cause ***access creep***, where users accu
 
 ## Expected Result
 
-Taylor Wilson receives access appropriate for the new position without retaining unnecessary Finance permissions.
+- Taylor Wilson receives access appropriate for the new position without retaining unnecessary Finance permissions.
 
 
 # Leaver Process
 
 ## Purpose
 
-The Leaver process prevents former employees from accessing company resources while preserving required business data.
+- The Leaver process prevents former employees from accessing company resources while preserving required business data.
 
 ## Trigger
 
-An approved termination or separation request is received from Human Resources.
+- An approved termination or separation request is received from Human Resources.
 
 ## Example Scenario
 
@@ -143,7 +143,7 @@ An approved termination or separation request is received from Human Resources.
 ## Expected Result
 
 
-Marcus Reed can no longer authenticate to or access Northstar Technologies resources.
+- Marcus Reed can no longer authenticate to or access Small Studios resources.
 
 
 # JML Security Principles
@@ -182,12 +182,4 @@ Future versions of the project will automate repetitive identity operations usin
 
 Future Workflow:
 
-HR Identity Data
-->
-PowerShell
-->
-Microsoft Graph
-->
-Microsoft Entra ID
-->
-User Provisioning and Access Management
+- HR Identity Data > PowerShell > Microsoft Graph > Microsoft Entra ID > User Provisioning and Access Management
