@@ -1,1 +1,16 @@
-
+EmployeeID,FirstName,LastName,Department,JobTitle
+1001,Jordan,Davis,Information Technology,IT Manager
+1002,Chris,Walker,Information Technology,Cloud Engineer
+1003,Ashley,Smith,Information Technology,Help Desk Analyst
+1004,Kevin,Harris,Information Technology,Security Analyst
+2001,Alicia,Carter,Human Resources,HR Manager
+2002,Marcus,Reed,Human Resources,HR Specialist
+3001,David,Thompson,Finance,Finance Manager
+3002,Jessica,Brown,Finance,Accountant
+3003,Taylor,Wilson,Finance,Financial Analyst
+4001,Michael,Johnson,Sales,Sales Manager
+4002,Lauren,Moore,Sales,Sales Representative
+4003,Brandon,Lee,Sales,Sales Representative
+5001,Nicole,Adams,Operations,Operations Manager
+5002,Cameron,Green,Operations,Operations Analyst
+5003,Rachel,Scott,Operations,Coordinator
