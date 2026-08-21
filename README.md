@@ -144,17 +144,17 @@ Group definitions can be found in:
 
 The project implements three major identity lifecycle processes.
 
-### Joiner
+### Joiner 
 
-Provision a new employee identity and assign appropriate access based on department and job role.
+- Provision a new employee identity and assign appropriate access based on department and job role.
 
-### Mover
+### Mover 
 
-Modify an employee's identity and permissions when responsibilities change while removing access that is no longer required.
+- Modify an employee's identity and permissions when responsibilities change while removing access that is no longer required.
 
-### Leaver
+### Leaver 
 
-Disable access, revoke sessions, remove permissions, and securely offboard employees leaving the organization.
+- Disable access, revoke sessions, remove permissions, and securely offboard employees leaving the organization.
 
 Full documentation:
 
@@ -216,20 +216,14 @@ Future improvements may include:
 
 ## Current Status
 
-The IAM architecture and identity datasets have been completed.
+- The IAM architecture and identity datasets have been completed.
 
-The next phase of the project focuses on implementing the documented design within Microsoft Entra ID.
+- The next phase of the project focuses on implementing the documented design within Microsoft Entra ID.
 
 ## Future Architecture
 
-A future version of the lab will introduce Windows Server Active Directory and hybrid identity.
+- A future version of the lab will introduce Windows Server Active Directory and hybrid identity.
 
-On-Premises Active Directory
-        |
-        v
-Microsoft Entra Cloud Sync
-        |
-        v
-Microsoft Entra ID
+  - On-Premises Active Directory > Microsoft Entra Cloud Sync > Microsoft Entra ID
 
-This will extend the project from a cloud-first IAM environment into a hybrid enterprise identity architecture.
+- This will extend the project from a cloud-first IAM environment into a hybrid enterprise identity architecture.
