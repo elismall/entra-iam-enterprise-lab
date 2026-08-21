@@ -46,23 +46,14 @@
 ## Core IAM Principles
 
 - Least Privilege
-
     - Users receive only the permissions required to perform their current job responsibilities.
-
 - Group-Based Access
-
     - Permissions are assigned through security groups instead of directly to individual users whenever possible.
-
 - Role-Based Access Control
-
     - Access is assigned according to business responsibilities and job roles.
-
 - Identity Lifecycle Management
-
     - User access is managed through Joiner-Mover-Leaver processes.
-
 - Privileged Access
-
     - Administrative permissions are separated from normal user access and limited to authorized personnel.
 
 ## Technologies
@@ -144,17 +135,9 @@ Group definitions can be found in:
 
 The project implements three major identity lifecycle processes.
 
-### Joiner 
-
-- Provision a new employee identity and assign appropriate access based on department and job role.
-
-### Mover 
-
-- Modify an employee's identity and permissions when responsibilities change while removing access that is no longer required.
-
-### Leaver 
-
-- Disable access, revoke sessions, remove permissions, and securely offboard employees leaving the organization.
+1. **Joiner** - Provision a new employee identity and assign appropriate access based on department and job role.
+2. **Mover** - Modify an employee's identity and permissions when responsibilities change while removing access that is no longer required.
+3. **Leaver** - Disable access, revoke sessions, remove permissions, and securely offboard employees leaving the organization.
 
 Full documentation:
 
