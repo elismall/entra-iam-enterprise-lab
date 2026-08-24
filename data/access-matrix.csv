@@ -1,15 +1,15 @@
-Role,DepartmentAccess,UserManagement,GroupManagement,AzureAccess,SecurityLogs,PrivilegedAccess
-HR Manager,Human Resources,None,None,None,None,No
-HR Specialist,Human Resources,None,None,None,None,No
-Finance Manager,Finance,None,None,None,None,No
-Accountant,Finance,None,None,None,None,No
-Financial Analyst,Finance,None,None,None,None,No
-Sales Manager,Sales,None,None,None,None,No
-Sales Representative,Sales,None,None,None,None,No
-Operations Manager,Operations,None,None,None,None,No
-Operations Analyst,Operations,None,None,None,None,No
-Coordinator,Operations,None,None,None,None,No
-Help Desk Analyst,Information Technology,Limited,None,Reader,None,No
-Cloud Engineer,Information Technology,None,None,Contributor,Limited,No
-Security Analyst,Information Technology,None,None,Reader,Read,No
-IT Manager,Information Technology,Full,Full,Contributor,Read,Yes
+Role,DepartmentAccess,IdentityAdministration,GroupManagement,AzureAccess,SecurityAccess,PrivilegeLevel
+HR Manager,Human Resources,None,None,None,None,None
+HR Specialist,Human Resources,None,None,None,None,None
+Finance Manager,Finance,None,None,None,None,None
+Accountant,Finance,None,None,None,None,None
+Financial Analyst,Finance,None,None,None,None,None
+Sales Manager,Sales,None,None,None,None,None
+Sales Representative,Sales,None,None,None,None,None
+Operations Manager,Operations,None,None,None,None,None
+Operations Analyst,Operations,None,None,None,None,None
+Coordinator,Operations,None,None,None,None,None
+Help Desk Analyst,Information Technology,Password Reset,None,Reader,None,Limited
+Cloud Engineer,Information Technology,None,None,Contributor,Limited,Elevated
+Security Analyst,Information Technology,None,None,Reader,Security Logs Read,Limited
+IT Manager,Information Technology,User Management,Group Management,Contributor,Security Logs Read,Elevated
