@@ -51,7 +51,7 @@ The process ensures that users:
 
 ## Expected Result
 
-Taylor Wilson receives only the access required to perform the Financial Analyst role.
+- Taylor Wilson receives only the access required to perform the Financial Analyst role.
 
 
 # Mover Process
@@ -95,9 +95,9 @@ Taylor Wilson receives only the access required to perform the Financial Analyst
 
 ## Security Consideration
 
-A Mover process must remove obsolete permissions before or while granting new permissions.
+- A Mover process must remove obsolete permissions before or while granting new permissions.
 
-Failing to remove previous access can cause ***access creep***, where users accumulate permissions that are no longer required.
+- Failing to remove previous access can cause ***access creep***, where users accumulate permissions that are no longer required.
 
 ## Expected Result
 
@@ -172,14 +172,11 @@ Failing to remove previous access can cause ***access creep***, where users accu
 
 # Future Automation
 
-The initial JML processes will be completed manually to validate the workflow.
+- The initial JML processes will be completed manually to validate the workflow.
+- Future versions of the project will automate repetitive identity operations using:
+   - PowerShell
+   - Microsoft Graph
+   - CSV-based identity data
 
-Future versions of the project will automate repetitive identity operations using:
-
-- PowerShell
-- Microsoft Graph
-- CSV-based identity data
-
-Future Workflow:
-
-- HR Identity Data > PowerShell > Microsoft Graph > Microsoft Entra ID > User Provisioning and Access Management
+- Future Workflow:
+   - HR Identity Data > PowerShell > Microsoft Graph > Microsoft Entra ID > User Provisioning and Access Management
