@@ -143,6 +143,23 @@ Full documentation:
 
 `docs/joiner-mover-leaver.md`
 
+## PowerShell Automation
+
+PowerShell is used throughout the lab to reduce repetitive administrative tasks and automate identity operations.
+
+Automation includes:
+
+- Microsoft Graph authentication
+- User provisioning
+- Security group creation
+- Group membership management
+- Joiner, mover, and leaver workflows
+- Project evidence management
+
+A reusable screenshot publishing utility was also developed to automatically organize implementation evidence, stage changes with Git, commit the evidence, and push it to GitHub.
+
+See [`scripts/`](scripts/) for implementation details.
+
 ## Project Phases
 
 ### Phase 1 - IAM Design
