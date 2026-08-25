@@ -10,30 +10,57 @@ Example:
 
 `.\scripts\Publish-Screenshots.ps1 -Name "groups-01" -Category "groups"`
 
-## Git Status
+# Git Workflow
 
-`git status`
+Use this workflow after making changes in VS Code that you want to publish to GitHub.
 
-## Stage All Changes
+## 1. Add
 
-`git add .`
+Stage the changes you want included in the next commit.
 
-## Commit
+Use case: You created or updated files inside the `one-liners` folder.
 
-`git commit -m "Describe changes"`
+```powershell
+git add scripts/one-liners/
+```
 
-## Push
+## 2. Status
 
-`git push`
+Check that the correct changes are staged before committing.
 
-## Pull Latest Changes
+```powershell
+git status
+```
 
-`git pull`
+Look for the files under:
 
-## Check Current Directory
+```text
+Changes to be committed:
+```
 
-`Get-Location`
+## 3. Commit
 
-## Open Repo in VS Code
+Save the staged changes as a Git commit.
 
-`code .`
+Use case: You updated your one-liner scripts and documentation.
+
+```powershell
+git commit -m "Update one-liner scripts"
+```
+
+## 4. Push
+
+Send the new commit from your local repository to GitHub.
+
+```powershell
+git push
+```
+
+## Quick Workflow
+
+```powershell
+git add scripts/one-liners/
+git status
+git commit -m "Update one-liner scripts"
+git push
+```
