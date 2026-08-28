@@ -2,59 +2,113 @@
 
 ## Project Overview
 
-- This project simulates the design and implementation of an enterprise Identity and Access Management environment for a fictional organization, Small Studios.
+This project simulates the design and implementation of an enterprise Identity and Access Management (IAM) environment for a fictional organization, **Small Studios**.
 
-- Microsoft Entra ID is used as the primary identity platform to manage users, groups, access permissions, authentication, and identity lifecycle processes.
+Microsoft Entra ID is used as the primary identity platform for managing users, security groups, role-based access, identity lifecycle processes, and Azure resource permissions.
 
-- The project focuses on applying real-world IAM concepts including least privilege, role-based access control, group-based access management, Joiner-Mover-Leaver processes, and identity automation.
+The project combines IAM design with hands-on administration and PowerShell automation using Microsoft Graph.
+
+The environment demonstrates several real-world IAM concepts, including:
+
+- Identity provisioning
+- Group-based access control
+- Role-Based Access Control (RBAC)
+- Least privilege
+- Joiner-Mover-Leaver lifecycle management
+- Microsoft Graph automation
+- Identity data synchronization
+- Access reconciliation
+- Idempotent PowerShell automation
+
+---
 
 ## Project Objectives
 
-- Design an enterprise identity architecture
-- Manage users and security groups with Microsoft Entra ID
+- Design an enterprise IAM architecture
+- Build structured identity datasets
+- Provision users in Microsoft Entra ID
+- Create and manage security groups
 - Implement group-based access control
 - Apply least privilege principles
-- Design role-based access assignments
-- Implement Joiner-Mover-Leaver processes
-- Configure multi-factor authentication
-- Manage Azure access using RBAC
-- Automate identity administration with PowerShell and Microsoft Graph
-- Review and audit identity activity
+- Implement Azure RBAC
+- Automate identity administration with PowerShell
+- Integrate PowerShell with Microsoft Graph
+- Automate user provisioning and updates
+- Automate security group creation
+- Automate group membership assignments
+- Demonstrate Joiner-Mover-Leaver workflows
+- Validate identity and access assignments
+- Document implementation evidence through GitHub
+
+---
 
 ## Environment
 
 - **Organization:** Small Studios
 - **Identity Provider:** Microsoft Entra ID
+- **Cloud Platform:** Microsoft Azure
 - **Environment Type:** Cloud-first
-- **Departments:**
-  - Information Technology
-  - Human Resources
-  - Finance
-  - Sales
-  - Operations
+
+### Departments
+
+- Information Technology
+- Human Resources
+- Finance
+- Sales
+- Operations
+
+---
 
 ## IAM Architecture
 
-- The environment follows a group-based access model:
-  
-    - User > Security Group > Role/Permission > Resource
+The environment follows a group-based access model:
 
-- Users receive baseline access based on department and additional permissions based on job responsibilities.
+```text
+User
+  |
+  v
+Security Group
+  |
+  v
+Role / Permission
+  |
+  v
+Resource
+```
 
-- Direct permission assignments to individual users are minimized whenever possible.
+Users receive baseline access through department-based security groups and additional permissions based on job responsibilities.
+
+Direct access assignments to individual users are minimized whenever possible.
+
+---
 
 ## Core IAM Principles
 
-- Least Privilege
-    - Users receive only the permissions required to perform their current job responsibilities.
-- Group-Based Access
-    - Permissions are assigned through security groups instead of directly to individual users whenever possible.
-- Role-Based Access Control
-    - Access is assigned according to business responsibilities and job roles.
-- Identity Lifecycle Management
-    - User access is managed through Joiner-Mover-Leaver processes.
-- Privileged Access
-    - Administrative permissions are separated from normal user access and limited to authorized personnel.
+### Least Privilege
+
+Users receive only the permissions required to perform their current job responsibilities.
+
+### Group-Based Access
+
+Permissions are assigned through security groups instead of directly to individual users whenever possible.
+
+### Role-Based Access Control
+
+Access is assigned according to business responsibilities and job roles.
+
+### Identity Lifecycle Management
+
+Identity changes are managed through Joiner-Mover-Leaver workflows.
+
+### Access Reconciliation
+
+PowerShell automation compares source identity data with Microsoft Entra ID and creates, updates, or preserves objects based on their current state.
+
+### Idempotent Automation
+
+Automation scripts are designed to be safely rerun without creating duplicate users, groups, or memberships.
+
+---
 
 ## Technologies
 
@@ -62,168 +116,437 @@
 - Microsoft Azure
 - Azure RBAC
 - Microsoft Graph
-- Microsoft Graph PowerShell
-- PowerShell
+- Microsoft Graph PowerShell SDK
+- PowerShell 7
+- CSV
 - Git
 - GitHub
+- Visual Studio Code
+
+---
 
 ## Repository Structure
 
-### data/
-Contains the structured identity and access data used throughout the lab.
+```text
+entra-iam-enterprise-lab/
+|
++-- data/
+|   +-- users.csv
+|   +-- groups.csv
+|   +-- group-memberships.csv
+|   +-- access-matrix.csv
+|
++-- docs/
+|   +-- company-overview.md
+|   +-- identity-design.md
+|   +-- access-control.md
+|   +-- joiner-mover-leaver.md
+|
++-- diagrams/
+|
++-- screenshots/
+|   +-- authentication/
+|   +-- automation/
+|   +-- groups/
+|   +-- logs/
+|   +-- memberships/
+|   +-- rbac/
+|   +-- users/
+|
++-- scripts/
+|   |
+|   +-- powershell/
+|   |   +-- ss-automation.ps1
+|   |   +-- sync-entra-users.ps1
+|   |   +-- sync-entra-groups.ps1
+|   |   +-- sync-entra-memberships.ps1
+|   |   +-- jml-lifecycle.ps1
+|   |
+|   +-- one-liners/
+|       +-- upload-screenshots.md
+|       +-- sync-users.md
+|
++-- README.md
+```
 
-- `users.csv` - Fictional employee identity data
-- `groups.csv` - Security group definitions
-- `group-memberships.csv` - Maps users to security groups
-- `access-matrix.csv` - Defines access levels by job role
+---
 
-### docs/
-Contains the design and process documentation for the IAM environment.
-
-- `company-overview.md` - Business and organizational overview
-- `identity-design.md` - IAM architecture and access-control design
-- `access-control.md` - Access and authorization model
-- `joiner-mover-leaver.md` - Identity lifecycle management procedures
-
-### diagrams/
-- Contains visual documentation of the IAM architecture and identity workflows.
-
-### screenshots/
-- Contains screenshots of Microsoft Entra ID configurations, testing, and implementation results.
-
-### scripts/
-- Contains PowerShell and Microsoft Graph scripts used to automate IAM operations.
-
-### README.md
-- Provides the main project overview, objectives, technologies, progress, and navigation.
 ## Identity Data
 
-The lab contains fictional employee identities representing several business departments.
+The lab contains fictional employee identities representing multiple business departments.
 
-Identity information includes:
+Identity attributes include:
 
 - Employee ID
-- Name
+- First name
+- Last name
 - Department
 - Job title
+- Company
 - Group membership
 - Access requirements
 
-The identity dataset is stored in:
+The primary identity dataset is stored in:
 
-`data/users.csv`
+```text
+data/users.csv
+```
+
+This dataset acts as a source of identity information for PowerShell automation.
+
+---
 
 ## Security Group Design
 
-- Security groups follow the naming convention:
+Security groups follow the naming convention:
 
-`SG-[Department or Resource]-[Purpose]`
+```text
+SG-[Department or Resource]-[Purpose]
+```
 
-Examples:
+Examples include:
 
-- `SG-IT-Users`
-- `SG-HR-Users`
-- `SG-IT-HelpDesk`
-- `SG-Azure-Readers`
-- `SG-Azure-Contributors`
+```text
+SG-IT-Users
+SG-HR-Users
+SG-IT-HelpDesk
+SG-IT-CloudEngineers
+SG-IT-Security
+SG-Azure-Readers
+SG-Azure-Contributors
+```
 
-Group definitions can be found in:
+Group definitions are stored in:
 
-`data/groups.csv`
+```text
+data/groups.csv
+```
 
-## Joiner-Mover-Leaver
+The environment includes:
 
-The project implements three major identity lifecycle processes.
+- Department groups
+- Job-role groups
+- Privileged groups
+- Azure RBAC groups
 
-1. **Joiner** - Provision a new employee identity and assign appropriate access based on department and job role.
-2. **Mover** - Modify an employee's identity and permissions when responsibilities change while removing access that is no longer required.
-3. **Leaver** - Disable access, revoke sessions, remove permissions, and securely offboard employees leaving the organization.
+---
 
-Full documentation:
+## Azure RBAC
 
-`docs/joiner-mover-leaver.md`
+Azure resource access is assigned through Microsoft Entra security groups.
+
+Example assignments include:
+
+```text
+SG-Azure-Readers
+        |
+        v
+Azure Reader
+
+SG-Azure-Contributors
+        |
+        v
+Azure Contributor
+```
+
+RBAC assignments are scoped to approved Azure resources instead of assigning elevated access directly to individual users.
+
+This supports centralized access management and least privilege.
+
+---
+
+## Microsoft Graph Integration
+
+A Microsoft Entra App Registration was configured for PowerShell automation.
+
+Microsoft Graph delegated permissions are used to automate identity administration.
+
+The automation environment supports operations including:
+
+- Reading users
+- Creating users
+- Updating user attributes
+- Reading groups
+- Creating security groups
+- Updating security groups
+- Reading group memberships
+- Adding group memberships
+
+Microsoft Graph provides the connection between the PowerShell automation layer and Microsoft Entra ID.
+
+---
 
 ## PowerShell Automation
 
-PowerShell is used throughout the lab to reduce repetitive administrative tasks and automate identity operations.
+### User Synchronization
 
-Automation includes:
+```text
+scripts/powershell/sync-entra-users.ps1
+```
 
-- Microsoft Graph authentication
+The user synchronization script:
+
+- Reads identities from `users.csv`
+- Generates User Principal Names
+- Detects existing users
+- Creates missing identities
+- Updates existing identity attributes
+- Assigns company, department, job title, and employee ID
+- Generates temporary passwords at runtime
+- Prevents duplicate account creation
+- Supports `-WhatIf`
+- Provides synchronization results
+
+Example workflow:
+
+```text
+users.csv
+    |
+    v
+sync-entra-users.ps1
+    |
+    v
+Microsoft Graph
+    |
+    v
+Microsoft Entra ID
+```
+
+---
+
+### Security Group Synchronization
+
+```text
+scripts/powershell/sync-entra-groups.ps1
+```
+
+The group synchronization script:
+
+- Reads group definitions from `groups.csv`
+- Detects existing security groups
+- Creates missing groups
+- Updates managed group attributes
+- Prevents duplicate groups
+- Supports `-WhatIf`
+- Provides synchronization results
+
+---
+
+### Group Membership Synchronization
+
+```text
+scripts/powershell/sync-entra-memberships.ps1
+```
+
+The membership synchronization script:
+
+- Reads assignments from `group-memberships.csv`
+- Matches users by Employee ID
+- Matches groups by group name
+- Detects existing memberships
+- Adds missing memberships
+- Prevents duplicate assignments
+- Supports repeatable access reconciliation
+
+Example:
+
+```text
+group-memberships.csv
+        |
+        v
+sync-entra-memberships.ps1
+        |
+        v
+User + Security Group
+        |
+        v
+Microsoft Entra ID
+```
+
+---
+
+## Joiner-Mover-Leaver Lifecycle
+
+Identity lifecycle management is demonstrated through:
+
+```text
+scripts/powershell/jml-lifecycle.ps1
+```
+
+### Joiner
+
+The Joiner process demonstrates:
+
 - User provisioning
-- Security group creation
-- Group membership management
-- Joiner, mover, and leaver workflows
-- Project evidence management
+- Identity attribute assignment
+- Department assignment
+- Job-role assignment
+- Group-based access
 
-A reusable screenshot publishing utility was also developed to automatically organize implementation evidence, stage changes with Git, commit the evidence, and push it to GitHub.
+Bulk user provisioning through `sync-entra-users.ps1` also demonstrates the Joiner process.
 
-See [`scripts/`](scripts/) for implementation details.
+### Mover
 
-## Project Phases
+The Mover process demonstrates:
 
-### Phase 1 - IAM Design
+- Department changes
+- Job-title changes
+- Removal of obsolete access
+- Assignment of new access
+- Prevention of access creep
 
-- [x] Define fictional organization
-- [x] Create employee dataset
-- [x] Design security groups
-- [x] Create access matrix
-- [x] Document identity architecture
-- [x] Design Joiner-Mover-Leaver processes
+Example scenario:
 
-### Phase 2 - Microsoft Entra ID Implementation
+```text
+Finance
+   |
+   | Mover
+   v
+Information Technology
 
-- [ ] Create Entra ID environment
-- [ ] Create users
-- [ ] Create security groups
-- [ ] Configure group memberships
-- [ ] Configure identity attributes
-- [ ] Test access assignments
+Old Finance access removed
+New IT access assigned
+Identity attributes updated
+```
 
-### Phase 3 - Authentication and Authorization
+### Leaver
 
-- [ ] Configure MFA
-- [ ] Implement Azure RBAC
-- [ ] Validate least privilege
-- [ ] Test user access
+The Leaver workflow demonstrates:
 
-### Phase 4 - Identity Automation
+- Account disablement
+- Removal of group memberships
+- Access revocation
+- Controlled identity offboarding
 
-- [ ] Connect to Microsoft Graph with PowerShell
-- [ ] Automate user provisioning
-- [ ] Automate group creation
-- [ ] Automate group membership assignments
-- [ ] Automate user offboarding
+The project documentation also includes additional offboarding considerations such as session revocation, data ownership transfer, and account retention.
 
-### Phase 5 - Application Identity
+Full lifecycle documentation is available in:
 
-- [ ] Create an Entra App Registration
-- [ ] Configure OAuth 2.0 / OpenID Connect
-- [ ] Implement Microsoft authentication
-- [ ] Explore Enterprise Applications and SSO
+```text
+docs/joiner-mover-leaver.md
+```
 
-### Phase 6 - Advanced Identity Security
+---
 
-Future improvements may include:
+## Screenshot Automation
 
+A reusable PowerShell utility was also created to organize project evidence:
+
+```text
+scripts/powershell/ss-automation.ps1
+```
+
+The script:
+
+- Copies screenshots into the correct repository category
+- Renames evidence consistently
+- Stages the screenshot with Git
+- Creates a Git commit
+- Pushes the evidence to GitHub
+
+This utility was created to reduce repetitive project administration while documenting the IAM implementation.
+
+---
+
+## Implementation Results
+
+The completed lab includes:
+
+- [x] Enterprise IAM architecture
+- [x] Structured employee identity dataset
+- [x] Security group design
+- [x] Access matrix
+- [x] Microsoft Entra ID environment
+- [x] Microsoft Graph App Registration
+- [x] Microsoft Graph PowerShell authentication
+- [x] User provisioning
+- [x] User attribute synchronization
+- [x] Security group creation
+- [x] Security group synchronization
+- [x] Group membership synchronization
+- [x] Azure RBAC assignments
+- [x] Least-privilege access model
+- [x] Joiner workflow
+- [x] Mover workflow
+- [x] Leaver workflow
+- [x] Idempotent automation
+- [x] Implementation screenshots
+- [x] Git/GitHub project documentation
+
+---
+
+## Key Skills Demonstrated
+
+This project demonstrates hands-on experience with:
+
+- Identity and Access Management
+- Microsoft Entra ID administration
+- Microsoft Graph
+- PowerShell automation
+- User provisioning
+- Identity lifecycle management
+- Security group administration
+- Group-based access control
+- Azure RBAC
+- Least privilege
+- Access reconciliation
+- Joiner-Mover-Leaver processes
+- API permissions
+- App Registrations
+- Git version control
+- Technical documentation
+- Troubleshooting
+
+---
+
+## Security Considerations
+
+The project follows several security practices:
+
+- No passwords are stored in the repository
+- Temporary passwords are generated at runtime
+- Secrets and authentication tokens are excluded from source control
+- Group-based access is preferred over direct user assignments
+- Privileged access is separated from standard access
+- Azure RBAC is scoped to approved resources
+- Identity lifecycle changes include removal of obsolete access
+
+---
+
+## Project Status
+
+**Status: Complete**
+
+The core cloud IAM environment has been implemented and automated.
+
+The project demonstrates identity design, Microsoft Entra administration, Microsoft Graph integration, PowerShell automation, Azure RBAC, group-based access management, and Joiner-Mover-Leaver lifecycle processes.
+
+---
+
+## Future Enhancements
+
+Potential future improvements include:
+
+- Multi-Factor Authentication policy testing
 - Conditional Access
 - Privileged Identity Management
 - Access Reviews
 - Entitlement Management
+- Enterprise Application SSO
 - Microsoft Sentinel integration
-- Hybrid Active Directory
+- Automated audit reporting
+- Windows Server Active Directory
 - Microsoft Entra Cloud Sync
+- Hybrid identity
 
-## Current Status
+A future hybrid version could extend the architecture to:
 
-- The IAM architecture and identity datasets have been completed.
-
-- The next phase of the project focuses on implementing the documented design within Microsoft Entra ID.
-
-## Future Architecture
-
-- A future version of the lab will introduce Windows Server Active Directory and hybrid identity.
-
-  - On-Premises Active Directory > Microsoft Entra Cloud Sync > Microsoft Entra ID
-
-- This will extend the project from a cloud-first IAM environment into a hybrid enterprise identity architecture.
+```text
+Windows Server Active Directory
+            |
+            v
+Microsoft Entra Cloud Sync
+            |
+            v
+Microsoft Entra ID
+```
