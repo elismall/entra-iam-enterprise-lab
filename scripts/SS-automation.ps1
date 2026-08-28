@@ -41,10 +41,10 @@ Optional custom Git commit message.
 If no message is provided, the script automatically creates one.
 
 .EXAMPLE
-.\scripts\Publish-Screenshots.ps1 -Name "groups-01" -Category "groups"
+.\scripts\SS-automation.ps1 -Name "groups-01" -Category "groups"
 
 .EXAMPLE
-.\scripts\Publish-Screenshots.ps1 `
+.\scripts\SS-automation.ps1 `
     -Name "rbac-01" `
     -Category "rbac" `
     -CommitMessage "Add Azure RBAC configuration evidence"
