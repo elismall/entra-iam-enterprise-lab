@@ -19,12 +19,12 @@ Example:
 smallstudios.onmicrosoft.com
 
 .EXAMPLE
-.\scripts\Sync-Entra-User.ps1 `
+.\scripts\sync-entra-users.ps1 `
     -TenantDomain "smallstudios.onmicrosoft.com" `
     -WhatIf
 
 .EXAMPLE
-.\scripts\Sync-Entra-User.ps1 `
+.\scripts\sync-entra-users.ps1 `
     -TenantDomain "smallstudios.onmicrosoft.com"
 #>
 

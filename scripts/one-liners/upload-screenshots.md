@@ -4,11 +4,11 @@
 
 Template:
 
-`.\scripts\SS-automation.ps1 -Name "PHOTO-NAME" -Category "FOLDER"`
+`.\scripts\ss-automation.ps1 -Name "PHOTO-NAME" -Category "FOLDER"`
 
 Example:
 
-`.\scripts\SS-automation.ps1 -Name "groups-01" -Category "groups"`
+`.\scripts\ss-automation.ps1 -Name "groups-01" -Category "groups"`
 
 # Git Workflow
 
