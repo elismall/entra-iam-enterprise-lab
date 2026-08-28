@@ -550,3 +550,7 @@ Microsoft Entra Cloud Sync
             v
 Microsoft Entra ID
 ```
+## Implementation Evidence
+
+Screenshots documenting the implementation and testing of the IAM environment are available in the [Implementation Evidence](screenshots/README.md) section.
+
