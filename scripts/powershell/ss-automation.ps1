@@ -41,10 +41,10 @@ Optional custom Git commit message.
 If no message is provided, the script automatically creates one.
 
 .EXAMPLE
-.\scripts\SS-automation.ps1 -Name "groups-01" -Category "groups"
+.\scripts\powershell\ss-automation.ps1 -Name "groups-01" -Category "groups"
 
 .EXAMPLE
-.\scripts\SS-automation.ps1 `
+.\scripts\powershell\ss-automation.ps1 `
     -Name "rbac-01" `
     -Category "rbac" `
     -CommitMessage "Add Azure RBAC configuration evidence"
@@ -74,10 +74,11 @@ param(
 # ------------------------------------------------------------
 
 # $PSScriptRoot points to:
-# entra-iam-enterprise-lab\scripts
+# entra-iam-enterprise-lab\scripts\powershell
 #
 # Moving up one level gives us the repository root.
-$RepoRoot = Split-Path -Parent $PSScriptRoot
+$ScriptsFolder = Split-Path -Parent $PSScriptRoot
+$RepoRoot = Split-Path -Parent $ScriptsFolder
 
 # Dynamically locate the current user's Windows Pictures folder.
 $PicturesFolder = [Environment]::GetFolderPath("MyPictures")
