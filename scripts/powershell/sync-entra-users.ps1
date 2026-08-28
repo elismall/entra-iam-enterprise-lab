@@ -3,43 +3,57 @@
 Synchronizes IAM lab users from users.csv into Microsoft Entra ID.
 
 .DESCRIPTION
-Reads identity data from data/users.csv and creates missing Microsoft
-Entra ID users through Microsoft Graph.
+Reads identity data from data/users.csv and synchronizes users with
+Microsoft Entra ID through Microsoft Graph.
 
-Existing users are detected by User Principal Name and skipped to prevent
-duplicate account creation.
+If a user does not exist, the script creates the account.
 
-Temporary passwords are generated at runtime and are not written to the
-repository or displayed in the console.
+If a user already exists, the script compares the user's identity
+attributes and updates them when necessary.
+
+The script is designed to be safely re-run without creating duplicate
+accounts.
+
+Temporary passwords are generated at runtime and are never written to
+the repository or displayed in the console.
 
 .PARAMETER TenantDomain
 The Microsoft Entra tenant domain used to construct user principal names.
 
-Example:
-smallstudios.onmicrosoft.com
+.PARAMETER CompanyName
+The company name assigned to synchronized users.
 
 .EXAMPLE
-.\scripts\sync-entra-users.ps1 `
-    -TenantDomain "smallstudios.onmicrosoft.com" `
+.\scripts\powershell\sync-entra-users.ps1 `
+    -TenantDomain "example.onmicrosoft.com" `
     -WhatIf
 
 .EXAMPLE
-.\scripts\sync-entra-users.ps1 `
-    -TenantDomain "smallstudios.onmicrosoft.com"
+.\scripts\powershell\sync-entra-users.ps1 `
+    -TenantDomain "example.onmicrosoft.com"
 #>
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 
 param(
     [Parameter(Mandatory = $true)]
-    [string]$TenantDomain
+    [string]$TenantDomain,
+
+    [string]$CompanyName = "Small Studios"
 )
 
 # ------------------------------------------------------------
 # Locate repository files
 # ------------------------------------------------------------
 
-$RepoRoot = Split-Path -Parent $PSScriptRoot
+# Script location:
+# repo\scripts\powershell\sync-entra-users.ps1
+#
+# Move up two folders to reach repository root.
+
+$ScriptsFolder = Split-Path -Parent $PSScriptRoot
+$RepoRoot = Split-Path -Parent $ScriptsFolder
+
 $CsvPath = Join-Path $RepoRoot "data\users.csv"
 
 if (-not (Test-Path $CsvPath -PathType Leaf)) {
@@ -84,14 +98,19 @@ Write-Host ""
 
 Write-Host "Checking existing Microsoft Entra users..."
 
-$ExistingUsers = Get-MgUser -All -Property Id,UserPrincipalName
+$ExistingUsers = Get-MgUser `
+    -All `
+    -Property Id,DisplayName,GivenName,Surname,UserPrincipalName,Department,JobTitle,EmployeeId,CompanyName,UsageLocation
 
-$ExistingUpns = @{}
+$ExistingUsersByUpn = @{}
 
 foreach ($ExistingUser in $ExistingUsers) {
 
     if ($ExistingUser.UserPrincipalName) {
-        $ExistingUpns[$ExistingUser.UserPrincipalName.ToLower()] = $true
+
+        $Key = $ExistingUser.UserPrincipalName.ToLowerInvariant()
+
+        $ExistingUsersByUpn[$Key] = $ExistingUser
     }
 }
 
@@ -103,7 +122,8 @@ Write-Host ""
 # ------------------------------------------------------------
 
 $CreatedCount = 0
-$SkippedCount = 0
+$UpdatedCount = 0
+$UnchangedCount = 0
 $FailedCount = 0
 
 # ------------------------------------------------------------
@@ -119,27 +139,95 @@ foreach ($User in $Users) {
 
     $MailNickname = (
         "$FirstName.$LastName"
-    ).ToLower()
+    ).ToLowerInvariant()
 
     $UserPrincipalName = "$MailNickname@$TenantDomain"
+
+    $UpnKey = $UserPrincipalName.ToLowerInvariant()
 
     Write-Host "Processing: $DisplayName"
 
     # --------------------------------------------------------
-    # Skip existing accounts
+    # Existing user
     # --------------------------------------------------------
 
-    if ($ExistingUpns.ContainsKey($UserPrincipalName.ToLower())) {
+    if ($ExistingUsersByUpn.ContainsKey($UpnKey)) {
 
-        Write-Host "  [SKIP] User already exists: $UserPrincipalName"
-        Write-Host ""
+        $ExistingUser = $ExistingUsersByUpn[$UpnKey]
 
-        $SkippedCount++
+        # Determine whether any managed attributes need updating.
+
+        $NeedsUpdate = (
+            $ExistingUser.DisplayName   -ne $DisplayName -or
+            $ExistingUser.GivenName     -ne $FirstName -or
+            $ExistingUser.Surname       -ne $LastName -or
+            $ExistingUser.Department    -ne $User.Department -or
+            $ExistingUser.JobTitle      -ne $User.JobTitle -or
+            $ExistingUser.EmployeeId    -ne $User.EmployeeID -or
+            $ExistingUser.CompanyName   -ne $CompanyName -or
+            $ExistingUser.UsageLocation -ne "US"
+        )
+
+        if (-not $NeedsUpdate) {
+
+            Write-Host "  [UNCHANGED] User already matches identity data."
+            Write-Host ""
+
+            $UnchangedCount++
+            continue
+        }
+
+        # ----------------------------------------------------
+        # Build update object
+        # ----------------------------------------------------
+
+        $UpdateBody = @{
+            displayName   = $DisplayName
+            givenName     = $FirstName
+            surname       = $LastName
+            department    = $User.Department
+            jobTitle      = $User.JobTitle
+            employeeId    = $User.EmployeeID
+            companyName   = $CompanyName
+            usageLocation = "US"
+        }
+
+        # ----------------------------------------------------
+        # Update existing user
+        # ----------------------------------------------------
+
+        if ($PSCmdlet.ShouldProcess(
+            $UserPrincipalName,
+            "Update Microsoft Entra ID user attributes"
+        )) {
+
+            try {
+
+                Update-MgUser `
+                    -UserId $ExistingUser.Id `
+                    -BodyParameter $UpdateBody `
+                    -ErrorAction Stop
+
+                Write-Host "  [UPDATED] $UserPrincipalName"
+                Write-Host ""
+
+                $UpdatedCount++
+            }
+            catch {
+
+                Write-Host "  [FAILED] $UserPrincipalName"
+                Write-Host "  Error: $($_.Exception.Message)"
+                Write-Host ""
+
+                $FailedCount++
+            }
+        }
+
         continue
     }
 
     # --------------------------------------------------------
-    # Generate temporary password
+    # Generate temporary password for new user
     # --------------------------------------------------------
 
     $RandomValue = [guid]::NewGuid().ToString("N").Substring(0,12)
@@ -147,38 +235,30 @@ foreach ($User in $Users) {
     $TemporaryPassword = "Aa!9$RandomValue"
 
     # --------------------------------------------------------
-    # Build Graph user object
+    # Build new user object
     # --------------------------------------------------------
 
     $NewUser = @{
-        accountEnabled = $true
-
-        displayName = $DisplayName
-
-        givenName = $FirstName
-
-        surname = $LastName
-
-        mailNickname = $MailNickname
-
+        accountEnabled    = $true
+        displayName       = $DisplayName
+        givenName         = $FirstName
+        surname           = $LastName
+        mailNickname      = $MailNickname
         userPrincipalName = $UserPrincipalName
-
-        department = $User.Department
-
-        jobTitle = $User.JobTitle
-
-        employeeId = $User.EmployeeID
-
-        usageLocation = "US"
+        department        = $User.Department
+        jobTitle          = $User.JobTitle
+        employeeId        = $User.EmployeeID
+        companyName       = $CompanyName
+        usageLocation     = "US"
 
         passwordProfile = @{
-            password = $TemporaryPassword
+            password                      = $TemporaryPassword
             forceChangePasswordNextSignIn = $true
         }
     }
 
     # --------------------------------------------------------
-    # Create Entra user
+    # Create new user
     # --------------------------------------------------------
 
     if ($PSCmdlet.ShouldProcess(
@@ -196,7 +276,7 @@ foreach ($User in $Users) {
             Write-Host "  Object ID: $($CreatedUser.Id)"
             Write-Host ""
 
-            $ExistingUpns[$UserPrincipalName.ToLower()] = $true
+            $ExistingUsersByUpn[$UpnKey] = $CreatedUser
 
             $CreatedCount++
         }
@@ -219,9 +299,8 @@ Write-Host ""
 Write-Host "----------------------------------------"
 Write-Host "User Synchronization Complete"
 Write-Host "----------------------------------------"
-
-Write-Host "Created: $CreatedCount"
-Write-Host "Skipped: $SkippedCount"
-Write-Host "Failed:  $FailedCount"
-
+Write-Host "Created:   $CreatedCount"
+Write-Host "Updated:   $UpdatedCount"
+Write-Host "Unchanged: $UnchangedCount"
+Write-Host "Failed:    $FailedCount"
 Write-Host "----------------------------------------"
