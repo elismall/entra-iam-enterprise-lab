@@ -28,7 +28,7 @@ Shows department, job-role, privileged, and Azure RBAC security groups used to i
 
 ### Group Membership Assignments
 
-![Group Memberships](memberships/memberships-01.png)
+![Group Memberships](memberships/memberships-02.png)
 
 Demonstrates users receiving access through Microsoft Entra security group memberships rather than direct permission assignments.
 
@@ -38,7 +38,7 @@ Demonstrates users receiving access through Microsoft Entra security group membe
 
 ### Azure Role Assignments
 
-![Azure RBAC](rbac/rbac-01.png)
+![Azure RBAC](rbac/rbac-02.png)
 
 Shows Microsoft Entra security groups assigned Azure RBAC roles such as Reader and Contributor at the lab resource scope.
 
@@ -48,7 +48,7 @@ Shows Microsoft Entra security groups assigned Azure RBAC roles such as Reader a
 
 ### Microsoft Graph User Synchronization
 
-![User Sync](automation/automation-09.png)
+![User Sync](automation/automation-07.png)
 
 Shows the PowerShell user synchronization workflow successfully comparing CSV identity data with Microsoft Entra ID.
 
@@ -72,7 +72,7 @@ Shows group membership reconciliation successfully completing with existing memb
 
 ### Microsoft Graph Authentication
 
-![Graph Authentication](authentication/authentication-01.png)
+![Graph Authentication](authentication/authentication-02.png)
 
 Shows PowerShell successfully authenticating to Microsoft Graph through the registered Entra application.
 
@@ -82,12 +82,12 @@ Shows PowerShell successfully authenticating to Microsoft Graph through the regi
 
 ### Mover Workflow
 
-![Mover Workflow](automation/automation-12.png)
+![Mover Workflow](automation/automation-13.png)
 
 Demonstrates a Mover lifecycle event where an employee's department and job title are changed as responsibilities change.
 
 ### Leaver Workflow
 
-![Leaver Workflow](automation/automation-13.png)
+![Leaver Workflow](automation/automation-14.png)
 
 Demonstrates the planned Leaver workflow for disabling an identity and removing access during employee offboarding.
