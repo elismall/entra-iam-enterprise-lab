@@ -48,7 +48,7 @@ Shows Microsoft Entra security groups assigned Azure RBAC roles such as Reader a
 
 ### Microsoft Graph User Synchronization
 
-![User Sync](automation/automation-07.png)
+![User Sync](authentication/authentication-01png)
 
 Shows the PowerShell user synchronization workflow successfully comparing CSV identity data with Microsoft Entra ID.
 
