@@ -28,7 +28,7 @@ Shows department, job-role, privileged, and Azure RBAC security groups used to i
 
 ### Group Membership Assignments
 
-![Group Memberships](memberships/memberships-02.png)
+![Group Memberships](memberships/membership-02.png)
 
 Demonstrates users receiving access through Microsoft Entra security group memberships rather than direct permission assignments.
 
